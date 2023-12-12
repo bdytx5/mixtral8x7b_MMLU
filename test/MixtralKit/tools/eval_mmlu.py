@@ -235,7 +235,7 @@ def eval_mixtral(args, subject, dev_df, test_df, generator):
     answers = ['A', 'B', 'C', 'D']
 
     max_gen_len = 1
-    temperature = 1.0  # for greedy decoding
+    temperature = 0.0  # for greedy decoding
     top_p = 0.9
 
     # Initialize wandb.Table for logging
@@ -268,7 +268,7 @@ def eval_mixtral(args, subject, dev_df, test_df, generator):
             cors.append(cor)
             results_table.add_data(prompt, pred, label, cor)
         except:
-            results_table.add_data(prompt, pred, label, False)
+            results_table.add_data(prompt, "error", label, False)
             continue
 
     acc = np.mean(cors)
